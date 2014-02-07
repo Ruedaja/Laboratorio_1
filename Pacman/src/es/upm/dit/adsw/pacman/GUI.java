@@ -2,10 +2,7 @@ package es.upm.dit.adsw.pacman;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 
 /**
@@ -13,14 +10,14 @@ import java.awt.geom.AffineTransform;
  * Presenta el estado del juego y captura la interaccon del usuario.
  *
  * @author Jose A. Manas
- * @version 3.2.2014
+ * @version 6.2.2014
  */
 public class GUI
         extends JPanel {
     /**
      * Nombre del juego.
      */
-    public static final String TITULO = "Pacman (3.2.2014)";
+    public static final String TITULO = "Pacman (6.2.2014)";
 
     /**
      * Espacio entre la zona de juego y el borde de la ventana.
@@ -51,6 +48,17 @@ public class GUI
         setPreferredSize(new Dimension(ANCHO, ANCHO));
         frame.getContentPane().add(this, BorderLayout.CENTER);
         setFocusable(true);
+
+        JToolBar toolBar = new JToolBar();
+        toolBar.setFloatable(false);
+        frame.add(toolBar, BorderLayout.SOUTH);
+
+        JButton restartButton= new JButton("reinicio");
+        toolBar.add(Box.createHorizontalGlue());
+        toolBar.add(restartButton);
+        toolBar.add(Box.createHorizontalGlue());
+
+        restartButton.addActionListener(new RestartAction());
 
         addKeyListener(new MyKeyListener());
         addMouseListener(new MyMouseListener());
@@ -267,6 +275,16 @@ public class GUI
                 pintame();
             } catch (Exception ignored) {
             }
+        }
+    }
+
+    private class RestartAction
+            extends AbstractAction {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            terreno.ponParedes();
+            repaint();
+            requestFocusInWindow();
         }
     }
 }

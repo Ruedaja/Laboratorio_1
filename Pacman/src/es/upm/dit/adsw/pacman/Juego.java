@@ -4,7 +4,7 @@ package es.upm.dit.adsw.pacman;
  * Arranca el juego.
  *
  * @author jose a. manas
- * @version 2.2.2014
+ * @version 6.2.2014
  */
 public class Juego {
     public static final int N = 15;
@@ -17,7 +17,7 @@ public class Juego {
      */
     public static void main(String[] args) {
         Terreno terreno = new Terreno(N);
-        terreno.creaParedes();
+        terreno.ponParedes();
         terreno.setObjetivo(N - 1, N - 1);
 
         Jugador jugador = new Jugador();
