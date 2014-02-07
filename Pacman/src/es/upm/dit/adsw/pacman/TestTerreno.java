@@ -26,7 +26,7 @@ public class TestTerreno {
     }
 
     @Test
-    public void testGetCasilla012() {
+    public void testGetCasilla02() {
         Casilla casilla = terreno.getCasilla(3, N - 1);
         assertEquals(3, casilla.getX());
         assertEquals(N - 1, casilla.getY());
