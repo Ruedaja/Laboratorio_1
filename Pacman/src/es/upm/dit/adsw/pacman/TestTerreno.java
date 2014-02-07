@@ -37,21 +37,4 @@ public class TestTerreno {
         Casilla casilla = terreno.getCasilla(0, N);
     }
 
-    @Test
-    public void testPut01() {
-        assertTrue(terreno.put(2, 3, jugador));
-        assertEquals(jugador, terreno.getCasilla(2, 3).getMovil());
-    }
-
-    @Test
-    public void testPut02() {
-        terreno.put(0, N - 1, jugador);
-        assertEquals(jugador, terreno.getCasilla(0, N - 1).getMovil());
-    }
-
-    @Test
-    public void testPut03() {
-        assertFalse(terreno.put(0, N, jugador));
-    }
-
 }
