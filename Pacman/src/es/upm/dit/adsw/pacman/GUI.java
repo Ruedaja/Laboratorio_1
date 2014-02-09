@@ -1,6 +1,7 @@
 package es.upm.dit.adsw.pacman;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
@@ -10,7 +11,7 @@ import java.awt.geom.AffineTransform;
  * Presenta el estado del juego y captura la interaccon del usuario.
  *
  * @author Jose A. Manas
- * @version 6.2.2014
+ * @version 9.2.2014
  */
 public class GUI
         extends JPanel {
@@ -232,14 +233,12 @@ public class GUI
         public void keyPressed(KeyEvent event) {
             Direccion direccion = getDireccion(event);
             if (direccion != null) {
-                Casilla origen = jugador.getCasilla();
-                terreno.move(origen, direccion);
+                terreno.move(jugador, direccion);
                 pintame();
                 if (jugador.getMessage() != null) {
                     JOptionPane.showMessageDialog(GUI.this,
                             jugador.getMessage(), "es/upm/dit/adsw/pacman",
                             JOptionPane.INFORMATION_MESSAGE);
-                    System.exit(0);
                 }
 
             }
@@ -278,11 +277,17 @@ public class GUI
         }
     }
 
-    private class RestartAction
+    @SuppressWarnings("serial")
+	private class RestartAction
             extends AbstractAction {
         @Override
         public void actionPerformed(ActionEvent e) {
             terreno.ponParedes();
+
+            Casilla casilla = jugador.getCasilla();
+            casilla.setMovil(null);
+            terreno.put(0, 0, jugador);
+
             repaint();
             requestFocusInWindow();
         }
