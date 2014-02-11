@@ -3,7 +3,7 @@ package es.upm.dit.adsw.pacman;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.Assert.*;
+import static org.junit.Assert.*;
 
 public class TestTerreno {
     public static final int N = 10;
